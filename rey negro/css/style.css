@@ -444,9 +444,7 @@ address {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-.header--scrolled .header__container {
-  min-height: 5rem;
-}
+
 @media (max-width: 42.625em) {
   .header__container {
     -webkit-box-pack: center;
