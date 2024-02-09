@@ -1,0 +1,107 @@
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+
+  z-index: 50;
+
+  transition: all 0.3s;
+
+  &--scrolled {
+    background-color: #19161c;
+  }
+
+  &__container {
+    min-height: toREM(120);
+    max-width: toREM(1120);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: toREM(20);
+
+    transition: all 0.3s;
+
+    .header--scrolled & {
+      min-height: toREM(80);
+    }
+
+    @media (max-width: toEM(682)) {
+      justify-content: center;
+    }
+  }
+
+  &__logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    aspect-ratio: 228 / 47;
+
+    max-width: toREM(228);
+  }
+
+  &__menu {
+  }
+}
+.menu {
+  @media (max-width: toEM(682)) {
+    display: none;
+  }
+  &__body {
+  }
+
+  &__list {
+    display: flex;
+    column-gap: toREM(40);
+    row-gap: toREM(10);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  &__item {
+    font-weight: 400;
+    font-size: toREM(17);
+    color: #848895;
+    line-height: 1.6;
+  }
+
+  &__link {
+    transition: color 0.3s;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: $mainColor;
+      }
+    }
+
+    &--golden {
+      position: relative;
+      &::before {
+        width: 0;
+        height: toREM(2);
+        position: absolute;
+        top: 95%;
+        left: 0;
+        content: "";
+        background: radial-gradient(343.88% 97.53% at 50% 50%, rgb(191, 136, 54) 0%, rgb(242, 222, 138) 100%);
+
+        transition: width 0.3s;
+      }
+
+      span {
+        background: radial-gradient(343.88% 97.53% at 50% 50%, rgb(191, 136, 54) 0%, rgb(242, 222, 138) 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      @media (any-hover: hover) {
+        &:hover {
+          &::before {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

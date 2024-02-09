@@ -1,0 +1,637 @@
+@use "sass:math";
+
+// -------------------------------------------------------------------------------
+
+// ? Variables
+$mainColor: #fff;
+
+// -------------------------------------------------------------------------------
+
+// Reset
+@import "_reset.scss";
+// Fonts
+@import "_fonts.scss";
+// Functions
+@import "_functions.scss";
+// Common
+@import "_common.scss";
+
+// -------------------------------------------------------------------------------
+
+// ? Components
+
+// Container
+[class*="__container"] {
+  margin: 0 auto;
+  max-width: toREM(1860);
+  padding: 0 toREM(15);
+}
+
+// Header
+@import "_header.scss";
+
+// -------------------------------------------------------------------------------
+// Document
+html {
+  scroll-behavior: smooth;
+}
+// Wrapper
+.wrapper {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
+
+  > .main {
+    flex-grow: 1;
+  }
+}
+
+// Body
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+// Page
+.page {
+  &__hero {
+    margin-bottom: toREM(50);
+  }
+  &__products {
+    margin-bottom: toREM(44);
+  }
+  &__guarantee {
+    margin-bottom: toREM(44);
+  }
+  &__partnership {
+    margin-bottom: toREM(44);
+  }
+  &__price {
+    margin-bottom: toREM(46);
+  }
+  &__video-contant {
+    margin-bottom: toREM(49);
+  }
+  &__wholesale-price {
+  }
+}
+
+// Hero
+
+.hero {
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  transition: margin-top 0.3s;
+
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1920 / 1071;
+
+    z-index: -1;
+  }
+
+  &__button {
+    transform: translate(0, toREM(-41));
+
+    border-radius: toREM(24);
+    background-color: #000;
+    border: toREM(2) solid transparent;
+
+    font-weight: 700;
+    line-height: 1.33;
+
+    padding: toREM(13) toREM(28);
+
+    @media (any-hover: hover) {
+      &:hover {
+        border: toREM(2) solid rgb(191, 136, 54);
+        background-color: #000;
+      }
+    }
+  }
+}
+
+// Products
+.products {
+  &__container {
+    position: relative;
+  }
+
+  &__body {
+    display: flex;
+    row-gap: toREM(20);
+    margin: 0 toREM(-30);
+    padding: 0 15px;
+    flex-wrap: wrap;
+  }
+
+  &__card {
+    flex: 0 1 33.333%;
+
+    @media (max-width: toEM(1024)) {
+      flex: 0 1 50%;
+      border-radius: toREM(20);
+    }
+
+    @media (max-width: toEM(767)) {
+      flex: 0 1 auto;
+    }
+  }
+}
+
+// Guarantee
+
+.item-promo {
+  position: relative;
+  min-height: toREM(639);
+
+  @media (max-width: toEM(1200)) {
+    min-height: toREM(500);
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(25, 22, 28, 0.3);
+
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    border-radius: toREM(12);
+
+    @media (max-width: toEM(425)) {
+      background-color: rgb(0, 0, 0, 0.4);
+    }
+  }
+
+  &--no-pseudo {
+    &::before {
+      width: 0px;
+
+      @media (max-width: toEM(425)) {
+        width: 100%;
+      }
+    }
+  }
+
+  &__content {
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: toREM(40);
+
+    padding: toREM(100) toREM(15) toREM(15) toREM(15);
+
+    position: relative;
+    z-index: 2;
+
+    @media (max-width: toEM(425)) {
+      padding: toREM(50) toREM(15);
+    }
+
+    &--left {
+      text-align: left;
+      align-items: start;
+      justify-content: start;
+      gap: toREM(70);
+
+      max-width: toREM(993);
+
+      padding: toREM(110) toREM(15) toREM(100) toREM(130);
+
+      @media (max-width: toEM(1200)) {
+        padding-left: toREM(50);
+        padding-right: toREM(50);
+      }
+      @media (max-width: toEM(525)) {
+        padding: toREM(50) toREM(15);
+        gap: toREM(30);
+        align-items: center;
+        text-align: center;
+      }
+    }
+    &--right {
+      text-align: left;
+      justify-content: flex-end;
+      align-items: start;
+      margin-left: auto;
+
+      max-width: toREM(880);
+
+      padding: toREM(150) toREM(15) toREM(100) toREM(15);
+
+      @media (max-width: toEM(525)) {
+        padding: toREM(50) toREM(15);
+        gap: toREM(30);
+        align-items: center;
+        text-align: center;
+      }
+    }
+  }
+
+  &__image {
+    border-radius: toREM(12);
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    &--position {
+      object-position: 100% 0;
+
+      @media (max-width: toEM(425)) {
+        object-position: 80% 0;
+      }
+    }
+  }
+
+  &__title {
+    @media (max-width: toEM(425)) {
+      font-size: toREM(30);
+    }
+    @media (max-width: toEM(375)) {
+      font-size: toREM(28);
+    }
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: toREM(28);
+    line-height: 1.2;
+    max-width: toREM(1640);
+
+    @media (max-width: toEM(1200)) {
+      font-size: toREM(24);
+    }
+    @media (max-width: toEM(425)) {
+      font-size: toREM(18);
+    }
+
+    p {
+      &:not(:last-child) {
+        margin-bottom: toREM(15);
+      }
+    }
+  }
+  &__button {
+    align-self: start;
+
+    padding: toREM(19) toREM(79);
+
+    @media (max-width: toEM(525)) {
+      align-self: center;
+    }
+    @media (max-width: toEM(375)) {
+      padding: toREM(19) toREM(50);
+    }
+  }
+}
+
+// Partnership
+
+.partnership {
+  &__container {
+  }
+
+  &__items {
+    position: relative;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: -1;
+
+    border-radius: toREM(12);
+  }
+
+  &__content {
+  }
+
+  &__title {
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: toREM(24);
+    line-height: 1.2;
+  }
+}
+
+// Videop-player
+.video-player {
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__video {
+    height: 100%;
+    aspect-ratio: 1103 / 639;
+    object-fit: cover;
+    max-width: toREM(1103);
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    transform: translate(-50%, 0);
+
+    border-radius: toREM(12);
+
+    visibility: hidden;
+    opacity: 0;
+
+    transition: all 0.3s;
+
+    z-index: 3;
+  }
+
+  &__poster {
+    aspect-ratio: 1103 / 639;
+    max-width: toREM(1103);
+    overflow: hidden;
+
+    position: relative;
+
+    img {
+      border-radius: toREM(12);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      background-color: rgb(25, 22, 28, 0.4);
+      border-radius: toREM(12);
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+  }
+
+  &__play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+
+    transform: translate(-50%, -50%);
+
+    max-width: toREM(250);
+
+    transition: all 0.3s;
+
+    @media (max-width: toEM(768)) {
+      max-width: toREM(150);
+    }
+    @media (max-width: toEM(425)) {
+      max-width: toREM(100);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      transition: all 0.3s;
+
+      @media (any-hover: hover) {
+        &:hover {
+          transform: scale(0.9);
+        }
+      }
+    }
+  }
+}
+
+// Wholesale price
+
+.wholesale-price {
+  &__container {
+    position: relative;
+  }
+
+  &__inner {
+    background-color: rgba(25, 22, 28, 0.8);
+    border-radius: toREM(12);
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: toREM(40);
+
+    padding: toREM(50) toREM(15) toREM(75) toREM(15);
+
+    @media (max-width: toEM(768)) {
+      text-align: center;
+    }
+    @media (max-width: toEM(425)) {
+      gap: toREM(25);
+    }
+  }
+
+  &__decor {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  &__decor--right {
+    top: 40%;
+    right: 15%;
+
+    aspect-ratio: 185 / 194;
+    max-width: toREM(185);
+
+    @media (max-width: toEM(1722)) {
+      right: 7%;
+    }
+    @media (max-width: toEM(1506)) {
+      display: none;
+    }
+  }
+
+  &__decor--left {
+    top: -13%;
+    left: 10%;
+
+    max-width: toREM(249);
+
+    @media (max-width: toEM(1722)) {
+      left: 3%;
+    }
+
+    @media (max-width: toEM(1506)) {
+      display: none;
+    }
+  }
+
+  &__title {
+    @media (max-width: toEM(425)) {
+      font-size: toREM(30);
+    }
+
+    span {
+      color: rgba(248, 228, 190, 0.8);
+    }
+  }
+
+  &__body {
+    max-width: toREM(966);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    column-gap: toREM(70);
+
+    @media (max-width: toEM(768)) {
+      flex-direction: column;
+      row-gap: toREM(50);
+      align-items: stretch;
+    }
+  }
+
+  &__item,
+  &__form {
+    flex: 0 1 toREM(483);
+
+    @media (max-width: toEM(768)) {
+      flex-basis: 100%;
+    }
+  }
+}
+
+.item-wholesale {
+  @media (max-width: toEM(768)) {
+    text-align: center;
+  }
+  &__title {
+    @media (max-width: toEM(425)) {
+      font-size: toREM(30);
+    }
+
+    &:not(:last-child) {
+      margin-bottom: toEM(25, 34);
+    }
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: toREM(28);
+    line-height: 1.04;
+
+    @media (max-width: toEM(425)) {
+      font-size: toREM(24);
+    }
+    @media (max-width: toEM(375)) {
+      font-size: toREM(22);
+    }
+
+    p {
+      &:not(:last-child) {
+        margin-bottom: toREM(10);
+      }
+    }
+  }
+}
+.form-wholesale {
+  display: flex;
+  flex-direction: column;
+
+  row-gap: toREM(30);
+
+  &__item {
+    input {
+      width: 100%;
+      border-radius: toREM(12);
+      padding: toREM(14) toREM(29);
+      font-size: toREM(16);
+
+      background-color: #19161c;
+      border: toREM(1) solid rgba(255, 255, 255, 0.1);
+
+      color: $mainColor;
+
+      &::placeholder {
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      &:focus {
+        outline: toREM(1) solid rgba(248, 228, 190, 0.8);
+      }
+    }
+  }
+
+  &__btn {
+  }
+}
+
+// Footer
+.footer {
+  padding: toREM(60) toREM(15);
+
+  @media (max-width: toEM(375)) {
+    padding: toREM(45) toREM(15);
+  }
+
+  &__container {
+    text-align: center;
+  }
+
+  &__link-logo {
+    aspect-ratio: 413 / 85;
+    min-width: toREM(413);
+    transition: all 0.3s;
+    @media (any-hover: hover) {
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    @media (max-width: toEM(529)) {
+      min-width: toREM(270);
+    }
+  }
+
+  &__logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
