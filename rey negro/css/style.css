@@ -428,6 +428,9 @@ address {
 .header--scrolled {
   background-color: #19161c;
 }
+.header--scrolled .header__container {
+  min-height: 5rem;
+}
 .header__container {
   min-height: 7.5rem;
   max-width: 70rem;
