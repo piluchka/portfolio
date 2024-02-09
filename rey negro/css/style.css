@@ -568,7 +568,7 @@ body {
   margin-bottom: 3.0625rem;
 }
 .hero {
-  height: 100vh;
+  height: 100dvh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
