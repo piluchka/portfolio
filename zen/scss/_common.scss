@@ -1,0 +1,266 @@
+// Main content component
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: toREM(20);
+
+  &--reversed {
+    flex-direction: row-reverse;
+  }
+
+  @media (max-width: toEM(846)) {
+    flex-direction: column;
+    align-items: center;
+
+    gap: toREM(40);
+  }
+
+  &__item {
+  }
+
+  &__img {
+    flex: 0 1 auto;
+    max-width: toREM(585);
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+.item-content {
+  color: #222;
+  font-weight: 400;
+  flex: 0 0 toREM(480);
+  align-self: flex-end;
+
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: toEM(846)) {
+    flex: 0 1 auto;
+    align-items: center;
+    align-self: center;
+
+    text-align: center;
+  }
+
+  &--lifted {
+    transform: translate(0, -55%);
+
+    @media (max-width: toEM(846)) {
+      transform: translate(0, 0);
+    }
+  }
+
+  &__title {
+    &:not(:last-child) {
+      margin-bottom: toEM(22, 42);
+    }
+  }
+
+  &__text {
+  }
+  &__play-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    gap: toREM(7);
+
+    color: #000;
+    font-size: toREM(16);
+    line-height: 1.56;
+
+    position: relative;
+
+    &::before {
+      content: "";
+      height: toREM(29);
+      width: toREM(29);
+      background: url("../img/icons/play-btn.svg") no-repeat center / contain;
+
+      transition: all 0.3s;
+    }
+    &::after {
+      content: "";
+      width: 0;
+      height: toREM(2);
+      background-color: $mainColor;
+      position: absolute;
+      top: 80%;
+      left: 13%;
+
+      transition: all 0.3s;
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        &::before {
+          transform: scale(0.9);
+        }
+        &::after {
+          width: 87%;
+        }
+      }
+    }
+  }
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: toREM(20);
+    align-items: start;
+
+    @media (max-width: toEM(846)) {
+      align-items: center;
+      justify-content: center;
+    }
+
+    &--row {
+      flex-direction: row;
+
+      @media (max-width: toEM(846)) {
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  &__button {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      transition: all 0.3s;
+    }
+    @media (any-hover: hover) {
+      &:hover {
+        img {
+          transform: scale(0.98);
+          transform: translate(1%, 2%);
+        }
+      }
+    }
+  }
+}
+
+// Title
+.title {
+  font-size: toREM(42);
+  line-height: 1.2;
+  position: relative;
+
+  @media (max-width: toEM(425)) {
+    font-size: toREM(38);
+  }
+
+  &--icon {
+    // &::after {
+    //   content: "R";
+    //   width: toREM(20);
+    //   height: toREM(20);
+    //   position: absolute;
+    //   top: -40%;
+    //   right: -7%;
+    //   border-radius: 50%;
+    //   border: 1px solid $mainColor;
+    //   font-size: toREM(15);
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    //   font-weight: 800;
+
+    //   @media (max-width: toEM(1143)) {
+    //     right: -5%;
+    //     top: -20%;
+    //   }
+    // }
+
+    span {
+      font-size: toREM(26);
+      vertical-align: top;
+    }
+  }
+}
+
+// Text
+.text {
+  color: #222;
+  font-size: toREM(18);
+  line-height: 1.44;
+
+  @media (max-width: toEM(846)) {
+    max-width: toREM(500);
+  }
+  @media (max-width: toEM(425)) {
+    font-size: toREM(16);
+  }
+
+  p {
+    &:not(:last-child) {
+      margin-bottom: toEM(12, 18);
+    }
+  }
+}
+
+// Button
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #222;
+  font-size: toREM(18);
+  line-height: 1.2;
+
+  border-radius: toREM(48);
+  border: toREM(1) solid #000;
+
+  transition: all 0.3s;
+
+  z-index: 3;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: toREM(48);
+    z-index: -1;
+
+    opacity: 1;
+
+    transition: all 0.5s;
+  }
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(193, 0, 0, 1) 0%, rgba(238, 187, 32, 1) 76%);
+    border-radius: toREM(48);
+    z-index: -1;
+
+    opacity: 0;
+
+    transition: all 0.5s;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      &::before {
+        opacity: 0;
+      }
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -1,0 +1,238 @@
+@use "sass:math";
+
+// Variables
+$mainColor: #222;
+
+// Reset
+@import "_reset.scss";
+// Fonts
+@import "_fonts.scss";
+// Functions
+@import "_functions.scss";
+
+// ? Components
+
+// Common
+@import "_common.scss";
+// Header
+@import "_header.scss";
+// Footer
+@import "_footer.scss";
+
+// -----------------------------------------------------------------
+
+// Body
+body {
+  font-family: "Nunito", sans-serif;
+}
+.menu-opened {
+  overflow: hidden;
+}
+
+// Container
+[class*="__container"] {
+  max-width: toREM(1230);
+  margin: 0 auto;
+  padding: 0 toREM(15);
+}
+
+// -----------------------------------------------------------------
+
+// Wrapper
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
+
+  > main {
+    flex-grow: 1;
+  }
+}
+
+// Page
+.page {
+  &__container {
+  }
+
+  &__hero,
+  &__boost,
+  &__care,
+  &__shopping,
+  &__fees,
+  &__app,
+  &__account {
+    margin-bottom: toREM(150);
+
+    @media (max-width: toEM(425)) {
+      margin-bottom: toREM(90);
+    }
+  }
+  &__hero {
+    padding: toREM(120) 0 0 0;
+
+    @media (max-width: toEM(375)) {
+      padding: toREM(100) 0 0 0;
+    }
+  }
+  &__cashback {
+    margin-bottom: toREM(40);
+  }
+  &__shopping {
+    .item-content__text {
+      &:not(:last-child) {
+        margin-bottom: toREM(28);
+      }
+    }
+  }
+  &__account {
+    .item-content__text {
+      &:not(:last-child) {
+        margin-bottom: toREM(28);
+      }
+    }
+  }
+}
+
+// Hero + Content
+.item-content {
+  &__subtitle {
+    &:not(:last-child) {
+      margin-bottom: toREM(33);
+    }
+
+    @media (max-width: toEM(425)) {
+      &:not(:last-child) {
+        margin-bottom: toREM(10);
+      }
+    }
+  }
+  &__title {
+  }
+
+  &__text {
+    &:not(:last-child) {
+      margin-bottom: toREM(13);
+    }
+  }
+}
+
+// Cashback
+
+// !!! Разобраться с марджинами у последнего
+// !!! Эл-та в секции brand
+
+.cashback {
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: toREM(584);
+    text-align: center;
+    margin: 0 auto;
+
+    &:not(:last-child) {
+      margin-bottom: toREM(60);
+    }
+
+    @media (max-width: toEM(375)) {
+      &:not(:last-child) {
+        margin-bottom: toREM(40);
+      }
+    }
+  }
+
+  &__title {
+  }
+
+  &__text {
+    &:not(:last-child) {
+      margin-bottom: toREM(46);
+    }
+
+    @media (max-width: toEM(425)) {
+      &:not(:last-child) {
+        margin-bottom: toREM(22);
+      }
+    }
+  }
+
+  &__button {
+    padding: toREM(12) toREM(32);
+  }
+
+  &__cards {
+  }
+}
+
+.brands {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  row-gap: toREM(60);
+  opacity: 1;
+  transform: translate(0, 0);
+  overflow: hidden;
+  max-height: toREM(1000);
+
+  transition: all 0.6s;
+  &:not(:last-child) {
+    margin-bottom: toREM(60);
+  }
+
+  @media (max-width: toEM(940)) {
+    row-gap: toREM(40);
+    &:not(:last-child) {
+      margin-bottom: toREM(40);
+    }
+  }
+  @media (max-width: toEM(768)) {
+    row-gap: toREM(20);
+    &:not(:last-child) {
+      margin-bottom: toREM(20);
+    }
+  }
+  @media (max-width: toEM(375)) {
+    row-gap: toREM(10);
+    &:not(:last-child) {
+      margin-bottom: toREM(10);
+    }
+  }
+
+  &--hidden {
+    transition: all 0.4s;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transform: translate(0, -30%);
+  }
+
+  &__cover {
+    flex: 0 1 300px;
+    text-align: center;
+
+    @media (max-width: toEM(768)) {
+      flex-basis: 200px;
+    }
+    @media (max-width: toEM(430)) {
+      flex-basis: 130px;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    max-width: toREM(192);
+
+    @media (max-width: toEM(768)) {
+      max-width: toREM(150);
+    }
+    @media (max-width: toEM(430)) {
+      max-width: toREM(120);
+    }
+  }
+}
