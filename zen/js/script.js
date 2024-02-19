@@ -1,53 +1,39 @@
 "use strict"
 
-let isMobileMenuCreated = false
-
-// let getMobileMenuCreated = function () {
-//   let isMobileMenuCreated = false
-//   function returnAnotherValue() {
-//     isMobileMenuCreated = !isMobileMenuCreated
-//   }
-//   returnAnotherValue()
-//   return isMobileMenuCreated
-// }
-
-// window.addEventListener("load", function () {
-//   console.log(innerWidth)
-//   checkViewportSize(innerWidth, isMobileMenuCreated)
-// })
-
-if (this.innerWidth <= 768 && !isMobileMenuCreated) {
-  const removeElement = this.document.getElementById("links")
-  if (removeElement && removeElement.parentElement.tagName === "DIV") {
-    removeElAndAppendItToMenu(removeElement)
-    isMobileMenuCreated = true
-  }
-}
-
-window.addEventListener("resize", function () {
-  // checkViewportSize(innerWidth, isMobileMenuCreated)
-  if (this.innerWidth <= 768 && !isMobileMenuCreated) {
-    const removeElement = this.document.getElementById("links")
-    if (removeElement && removeElement.parentElement.tagName === "DIV") {
-      removeElAndAppendItToMenu(removeElement)
+function getIsMobileMenuCreated(isChanged) {
+  function isMobileMenuCreated(isChanged) {
+    let isMobileMenuCreated = false
+    if (isChanged) {
       isMobileMenuCreated = true
     }
-  } else if (this.innerWidth > 768 && isMobileMenuCreated) {
-    const removeElement = this.document.getElementById("links")
-    if (removeElement && removeElement.parentElement.tagName === "LI") {
-      removeElement.parentElement.remove()
-      const item = document.getElementsByClassName("item-header")
-      if (item) {
-        const mainItem = item[0]
-        mainItem.append(removeElement)
-        isMobileMenuCreated = false
-      }
-    }
+
+    return isMobileMenuCreated
+  }
+
+  return isMobileMenuCreated(isChanged)
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+  const innerWidth = this.innerWidth
+
+  if (innerWidth <= 768) {
+    createMobileMenu(innerWidth)
+  }
+})
+
+window.addEventListener("resize", function () {
+  const innerWidth = this.innerWidth
+
+  if (innerWidth <= 768 && !getIsMobileMenuCreated(false)) {
+    createMobileMenu()
+  } else {
+    removeMobileMenu()
   }
 })
 
 document.addEventListener("click", function (e) {
   const target = e.target
+
   if (target.classList.contains("icon-menu")) {
     document.body.classList.toggle("menu-opened")
   }
@@ -55,6 +41,7 @@ document.addEventListener("click", function (e) {
   if (target.closest("[data-open]") && target.tagName === "BUTTON") {
     let hiddenEl
     let nextSibling = target.closest("[data-open]")
+    console.log(nextSibling)
     while (nextSibling) {
       if (nextSibling.classList.contains("brands--hidden")) {
         hiddenEl = nextSibling
@@ -81,6 +68,29 @@ document.addEventListener("click", function (e) {
   }
 })
 
+function createMobileMenu() {
+  if (!getIsMobileMenuCreated(false)) {
+    const removeElement = document.getElementById("links")
+    if (removeElement && removeElement.parentElement.tagName === "DIV") {
+      removeElAndAppendItToMenu(removeElement)
+      getIsMobileMenuCreated(true)
+    }
+  }
+}
+
+function removeMobileMenu() {
+  const removeElement = document.getElementById("links")
+  if (removeElement && removeElement.parentElement.tagName === "LI") {
+    removeElement.parentElement.remove()
+    const item = document.getElementsByClassName("item-header")
+    if (item) {
+      const mainItem = item[0]
+      mainItem.append(removeElement)
+      getIsMobileMenuCreated(true)
+    }
+  }
+}
+
 function removeElAndAppendItToMenu(el) {
   el.remove()
   const menuList = document.getElementById("menuList")
@@ -91,24 +101,18 @@ function removeElAndAppendItToMenu(el) {
   menuList.append(li)
 }
 
-// function checkViewportSize(viewportSize, isMobileMenuCreated) {
-//   console.log(isMobileMenuCreated)
-//   if (viewportSize <= 768 && !isMobileMenuCreated) {
-//     const removeElement = document.getElementById("links")
-//     if (removeElement && removeElement.parentElement.tagName === "DIV") {
-//       removeElAndAppendItToMenu(removeElement)
-//       isMobileMenuCreated = true
-//     }
-//   } else if (viewportSize > 768 && isMobileMenuCreated) {
-//     const removeElement = document.getElementById("links")
-//     if (removeElement && removeElement.parentElement.tagName === "LI") {
-//       removeElement.parentElement.remove()
-//       const item = document.getElementsByClassName("item-header")
-//       if (item) {
-//         const mainItem = item[0]
-//         mainItem.append(removeElement)
-//         isMobileMenuCreated = false
-//       }
-//     }
-//   }
-// }
+// Scroll effect with Intersection Observer
+const observer = new IntersectionObserver(observerCallBack, { threshold: 0.7 })
+
+function observerCallBack(entries) {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("_show")
+    }
+  })
+}
+
+const scrollElements = document.querySelectorAll("._scroll")
+scrollElements.forEach((el) => {
+  observer.observe(el)
+})
