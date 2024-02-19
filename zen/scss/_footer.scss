@@ -26,9 +26,6 @@
   flex-wrap: wrap;
   gap: toREM(30);
 
-  @media (max-width: toEM(768)) {
-    // justify-content: center;
-  }
   @media (max-width: toEM(425)) {
     row-gap: toREM(40);
   }
@@ -127,8 +124,7 @@
     }
 
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     max-width: toREM(234);
   }
 
