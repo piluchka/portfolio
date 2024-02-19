@@ -119,9 +119,6 @@ body {
 
 // Cashback
 
-// !!! Разобраться с марджинами у последнего
-// !!! Эл-та в секции brand
-
 .cashback {
   &__item {
     display: flex;
@@ -235,4 +232,16 @@ body {
       max-width: toREM(120);
     }
   }
+}
+
+._scroll {
+  opacity: 0;
+  transform: translate(0, -20%);
+  transition: all 1s;
+}
+._show {
+  transition: all 1s;
+  transform: translate(0, 0);
+
+  opacity: 1;
 }

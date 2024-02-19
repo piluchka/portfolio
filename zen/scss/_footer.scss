@@ -27,7 +27,7 @@
   gap: toREM(30);
 
   @media (max-width: toEM(768)) {
-    justify-content: center;
+    // justify-content: center;
   }
   @media (max-width: toEM(425)) {
     row-gap: toREM(40);
