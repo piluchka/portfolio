@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/style.css">
+   <script src="js/script.js" defer></script>
+   <title>WeatherY - Know the weather</title>
+</head>
+
+<body>
+   <div class="wrapper">
+      <main class="page">
+         <div class="page__container">
+            <div class="weather">
+               <div class="weather__input">
+                  <label for="city">Enter your city</label>
+                  <input type="text" name="city" id="city" placeholder="Your city">
+                  <button class="weather__search"><img src="img/search.svg" alt="search"></button>
+               </div>
+               <div class="weather__display display-weather">
+                  <img class="display-weather__main-img main-image" src="img/rain.svg">
+                  <div class="display-weather__condition condition"></div>
+                  <div class="display-weather__temp temp"></div>
+                  <div class="display-weather__feels feels"></div>
+                  <div class="display-weather__city city"></div>
+               </div>
+               <div class="weather__info info-weather">
+                  <div class="info-weather__card">
+                     <img src="img/humidity.svg" alt="humidity">
+                     <div class="info-weather__unit humidity-percents"></div>
+                     <div class="info-weather__title">Humidity</div>
+                  </div>
+                  <div class="info-weather__card">
+                     <img src="img/wind.svg" alt="wind">
+                     <div class="info-weather__unit wind-speed"></div>
+                     <div class="info-weather__title">Wind speed</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </main>
+   </div>
+</body>
+
+</html>
