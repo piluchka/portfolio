@@ -49,7 +49,6 @@ async function checkWeather(city, apiKey, WEATHER_CONDITIONS) {
   await fetch(apiUrl + city + `&appid=${apiKey}`)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
       document.querySelector(".condition").innerText = data.weather[0].main
       document.querySelector(".temp").innerText = `${Math.round(data.main.temp)}°C`
       document.querySelector(".city").innerText = data.name
