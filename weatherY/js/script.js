@@ -33,7 +33,7 @@ getGeo(API_KEY, WEATHER_CONDITIONS)
 // get city name by coords
 async function getCityName(latitude, longitude, apiKey, WEATHER_CONDITIONS) {
   const response = await fetch(
-    `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`
+    `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${apiKey}`
   )
   if (response.ok) {
     let data = await response.json()
