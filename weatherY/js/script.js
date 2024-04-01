@@ -46,6 +46,7 @@ async function getCityName(latitude, longitude, apiKey, WEATHER_CONDITIONS) {
 // get info about weather in a city
 async function checkWeather(city, apiKey, WEATHER_CONDITIONS) {
   const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="
+  city = city.trim()
   await fetch(apiUrl + city + `&appid=${apiKey}`)
     .then((response) => response.json())
     .then((data) => {
